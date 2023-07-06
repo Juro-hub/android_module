@@ -15,16 +15,16 @@ import android.os.Handler
 import android.os.Looper
 import androidx.core.content.ContextCompat
 import androidx.core.location.LocationManagerCompat
+import common.modules.bluetooth.impl.BluetoothDataCallback
 import common.modules.bluetooth.impl.BluetoothState
+import java.util.*
 
 @SuppressLint("MissingPermission")
-class Bluetooth {
+class Bluetooth(private val serviceID: String, private val characteristicCode: String, private val descriptorCode: String, private val dataCallback: BluetoothDataCallback) {
     private var bluetoothGatt: BluetoothGatt? = null       // 블루투스 Gatt
     private var bluetoothAdapter: BluetoothAdapter? = null  // Bluetooth Adapter
     private lateinit var device: BluetoothDevice            // 연결된 Bluetooth Device
     private val deniedPermission = arrayListOf<String>()    // 권한 목록
-
-    private var data = ""
 
     /**
      * 블루투스 기능 사용 가능 단말 조회
@@ -134,18 +134,36 @@ class Bluetooth {
         }
     }
 
-    /**
-     * Data 획득하는 함수
-     */
-/*    fun getData(): {
+    // Bluetooth 통신 수행.
+    fun notifyBluetooth(isEnable: Boolean) {
+        bluetoothGatt?.let { gatt ->
+            val service = gatt.getService(UUID.fromString(serviceID))
+            val ch = service.getCharacteristic(UUID.fromString(characteristicCode))
+            gatt.setCharacteristicNotification(ch, isEnable)
+            val descriptor = ch.getDescriptor(UUID.fromString(descriptorCode)) ?: return
 
-    }*/
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (isEnable) {
+                    gatt.writeDescriptor(descriptor, BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE)
+                } else {
+                    gatt.writeDescriptor(descriptor, BluetoothGattDescriptor.DISABLE_NOTIFICATION_VALUE)
+                }
+            } else {
+                descriptor.value = if (isEnable) {
+                    BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE
+                } else {
+                    BluetoothGattDescriptor.DISABLE_NOTIFICATION_VALUE
+                }
+                gatt.writeDescriptor(descriptor)
+            }
+        }
+    }
 
     private val gattCallback = object : BluetoothGattCallback() {
-        private lateinit var state: BluetoothState
+        private lateinit var bluetoothStateInterface: BluetoothState
 
         fun setState(bluetoothState: BluetoothState) {
-            this.state = bluetoothState
+            this.bluetoothStateInterface = bluetoothState
         }
 
         // Connection 관련 변경점이 있는 경우
@@ -154,13 +172,13 @@ class Bluetooth {
             when (newState) {
                 BluetoothProfile.STATE_CONNECTED -> {
                     gatt?.let {
-                        state.bluetoothConnect()
+                        bluetoothStateInterface.bluetoothConnect()
                         bluetoothGatt = it
                     }
                 }
 
                 BluetoothProfile.STATE_DISCONNECTED -> {
-                    state.bluetoothDisConnected()
+                    bluetoothStateInterface.bluetoothDisConnected()
                     bluetoothGatt?.close()
                     bluetoothGatt = null
                 }
@@ -168,7 +186,7 @@ class Bluetooth {
         }
 
         override fun onCharacteristicChanged(gatt: BluetoothGatt, characteristic: BluetoothGattCharacteristic, value: ByteArray) {
-            data = String(value)
+            dataCallback.getData(String(value))
         }
 
         @Deprecated("Deprecated in Java")
