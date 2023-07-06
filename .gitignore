@@ -17,11 +17,9 @@ local.properties
 gradle.properties
 gradlew
 gradlew.bat
-local.properties
 settings.gradle
 /app
 build.gradle
 /.idea/
 app
 .idea
-settings.gradle
