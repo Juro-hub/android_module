@@ -1,0 +1,4 @@
+<resources>
+    <!-- 공통 로딩 dp size -->
+    <dimen name="loading_gif_size">30dp</dimen>
+</resources>
