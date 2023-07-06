@@ -21,7 +21,7 @@ import javax.net.ssl.X509TrustManager
 /**
  * 공용 NetworkClient
  */
-class NetworkClient(private val networkUrl: String, private val data: Any, private val session: String? = null) {
+class NetworkClient(private val networkUrl: String, private val data: Any) {
 
     private val timeOut: Long = 30
     private var request: Request? = null
@@ -77,9 +77,6 @@ class NetworkClient(private val networkUrl: String, private val data: Any, priva
         }
 
         request = Request.Builder().apply {
-            if (session != null) {
-                addHeader("Cookie", session)
-            }
             addHeader("User-Agent", userAgent)
             url(networkUrl)
             if (data.length() > 0) {
