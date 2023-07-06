@@ -22,3 +22,6 @@ settings.gradle
 /app
 build.gradle
 /.idea/
+app
+.idea
+settings.gradle
