@@ -14,3 +14,9 @@
 .cxx
 local.properties
 /app/
+build.gradle
+gradle.properties
+gradlew
+gradlew.bat
+local.properties
+settings.gradle
