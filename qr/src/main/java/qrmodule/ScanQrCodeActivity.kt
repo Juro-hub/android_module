@@ -34,10 +34,7 @@ class ScanQrCodeActivity : AppCompatActivity() {
     private val REQUEST_CODE_CAMERA = 5000
     private var isScan = true   // 스캔 완료 Flag
 
-    private lateinit var commute: String
-    private lateinit var sessionId: String
-
-    // 카메라 권한 없을 경우 요청 결과 수신처리
+    // 카메라 권한 없을 경우 요청 결과 수신 처리
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE_CAMERA) {
@@ -162,7 +159,7 @@ class ScanQrCodeActivity : AppCompatActivity() {
                     Toast.makeText(this@ScanQrCodeActivity, "채워주세요", Toast.LENGTH_SHORT).show()
                     finish()
                 }
-            }, onFailure = { _, msg ->
+            }, onFailure = { _, _ ->
                 runOnUiThread {
                     //TODO Alert 관련
                 }

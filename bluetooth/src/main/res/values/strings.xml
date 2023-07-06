@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 블루투스 메시지 -->
+    <string name="bluetooth_msg_turn_on">블루투스 기능을 활성화 해주세요.</string>
+    <string name="bluetooth_msg_permission">블루투스 사용 권한이 거부되었습니다.\n설정에서 다시 활성화 해주세요.</string>
+    <string name="bluetooth_msg_permission_locate">블루투스 이용을 위해서는 위치 정보 이용이 필요합니다.\n설정에서 위치 이용을 활성화해주세요.</string>
+    <string name="bluetooth_msg_old_device">블루투스가 지원되지 않는 기기입니다.\n다른 기기로 시도해주세요.</string>
+    <string name="bluetooth_msg_fail_to_connect">블루투스 연결이 되지 않습니다.\n이용  방법 메뉴에서 저울 이용 방법을 확인해주세요.</string>
+    <string name="bluetooth_msg_device_connect_fail">잠시 후 다시 시도해주세요.</string>
+    <string name="bluetooth_msg_data_empty">시스템 장애로 서비스를 이용하실 수 없습니다.\n잠시 후 다시 이용해주세요.\n해당 오류가 계속되는 경우 운영자에게 문의해주세요.</string>
+    <string name="bluetooth_msg_recycle_id_empty">분리수거 수정 데이터 획득에 실패하였습니다.\n관리자에게 문의 부탁드립니다.</string>
+    <string name="bluetooth_msg_un_connect">블루투스 연결이 원할하지 않습니다.\n잠시 후 다시 시도해주세요.</string>
+    <string name="bluetooth_msg_over_load">무게는 최대 60KG 을 넘을 수 없습니다.</string>
+</resources>
