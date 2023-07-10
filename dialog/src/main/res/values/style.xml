@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="custom_dialog_style" parent="Theme.AppCompat.Dialog">
+        <item name="background">@drawable/bg_custom_dialog</item>
+    </style>
+
+    <style name="custom_dialog_title_style" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/custom_dialog_title_color</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:layout_marginTop">25dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18dp</item>/
+    </style>
+
+    <!-- 메시지 영역 -->
+    <style name="custom_dialog_message_style" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/custom_dialog_message_color</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:minWidth">300dp</item>
+        <item name="android:maxWidth">400dp</item>
+    </style>
+
+    <!-- 긍정 버튼 스타일 -->
+    <style name="custom_dialog_positive_button_style" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_custom_dialog_positive_button</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@color/custom_dialog_positive_button_text_color</item>
+        <item name="android:paddingTop">17dp</item>
+        <item name="android:paddingBottom">17dp</item>
+        <item name="android:layout_marginBottom">30dp</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+    </style>
+
+    <!-- 부정 버튼 스타일 -->
+    <style name="custom_dialog_negative_button_style" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_custom_dialog_negative_button</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@color/custom_dialog_negative_button_text_color</item>
+        <item name="android:paddingTop">17dp</item>
+        <item name="android:paddingBottom">17dp</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_marginBottom">30dp</item>
+        <item name="android:layout_marginTop">30dp</item>
+    </style>
+</resources>

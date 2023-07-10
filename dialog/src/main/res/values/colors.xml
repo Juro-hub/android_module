@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 색상 관련 설정 필요 -->
+<resources>
+    <!-- 타이틀 글자 색상 -->
+    <color name="custom_dialog_title_color">#444444</color>
+
+    <!-- 긍정 버튼 색상 / 글자 색 -->
+    <color name="custom_dialog_positive_button_color">#2763ba</color>
+    <color name="custom_dialog_positive_button_text_color">#ffffff</color>
+
+    <!-- 부정 버튼 색상 / 글자 색 -->
+    <color name="custom_dialog_negative_button_color">#FF0000</color>
+    <color name="custom_dialog_negative_button_text_color">#FFFFFF</color>
+
+    <!-- 메시지 영역 글자 색 -->
+    <color name="custom_dialog_message_color">#222222</color>
+    <color name="custom_dialog_border_color">#00000033</color>
+</resources>

@@ -1,6 +1,6 @@
 package common.modules.bluetooth.impl
 
-interface BluetoothState {
+internal interface BluetoothState {
     fun bluetoothConnect()
     fun bluetoothDisConnected()
 }

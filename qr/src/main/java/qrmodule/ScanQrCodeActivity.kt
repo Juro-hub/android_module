@@ -135,7 +135,7 @@ class ScanQrCodeActivity : AppCompatActivity() {
 
     private fun initScanner() {
         val decoratedQrScanner = findViewById<DecoratedBarcodeView>(R.id.scan_qr_code_zxing_scanner)
-        decoratedQrScanner.setStatusText("") // QR 스캐너 하단 Prompt Message 제거. ( 바코드를 사각형 안에 비춰주세요. )
+        decoratedQrScanner.setStatusText("") // QR 스캐너 하단 Prompt Message 제거.
         val viewfinderView = decoratedQrScanner.viewFinder
         viewfinderView.visibility = View.GONE
 
