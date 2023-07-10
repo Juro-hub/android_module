@@ -13,10 +13,11 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.1'
+        classpath 'com.android.tools.build:gradle:7.4.2'
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.20'
 
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath 'com.github.jitpack:gradle-simple:1.0'
     }
 
     group='com.github.anymobi-app-devlopeTeam'

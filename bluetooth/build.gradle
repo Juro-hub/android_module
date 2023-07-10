@@ -11,7 +11,7 @@ afterEvaluate{
                 from components.release
                 groupId = 'com.github.anymobi-app-devlopeTeam'
                 artifactId = 'bluetooth'
-                version = '0.1.7'
+                version = '0.1.8'
             }
         }
     }
