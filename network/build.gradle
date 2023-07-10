@@ -1,8 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'maven-publish'
+    id 'kotlin-android'
 }
-apply plugin: 'kotlin-android'
 
 afterEvaluate{
     publishing {
@@ -11,7 +11,7 @@ afterEvaluate{
                 from components.release
                 groupId = 'com.github.anymobi-app-devlopeTeam'
                 artifactId = 'network'
-                version = '0.1.8'
+                version = '0.1.9'
             }
         }
     }
