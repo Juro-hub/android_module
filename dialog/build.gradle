@@ -1,8 +1,21 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'maven-publish'
 }
-group='com.github.anymobi-app-devlopeTeam'
+
+afterEvaluate{
+    publishing {
+        publications{
+            release(MavenPublication){
+                from components.release
+                groupId = 'com.github.anymobi-app-devlopeTeam'
+                artifactId = 'dialog'
+                version = '0.1.5'
+            }
+        }
+    }
+}
 
 android {
     namespace 'common.modules.dialog'
