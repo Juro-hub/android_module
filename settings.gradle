@@ -3,7 +3,7 @@ pluginManagement {
         google()
         maven {
             url 'https://jitpack.io'
-            credentials { "jp_njfed7ifevi67svh9bhfblnf41" }
+            credentials { username authToken }
         }
         maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' }
         mavenCentral()
@@ -16,7 +16,7 @@ dependencyResolutionManagement {
         google()
         maven {
             url 'https://jitpack.io'
-            credentials { "jp_njfed7ifevi67svh9bhfblnf41" }
+            credentials { username authToken }
         }
         maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' }
         mavenCentral()
