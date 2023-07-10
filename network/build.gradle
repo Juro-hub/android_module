@@ -9,14 +9,14 @@ afterEvaluate{
         publications{
             release(MavenPublication){
                 from components.release
-                groupId = 'com.github.anymobi-app-devlopeTeam.network'
+                groupId = 'com.github.anymobi-app-devlopeTeam'
                 artifactId = 'network'
                 version = '0.2.3'
             }
 
             debug(MavenPublication){
                 from components.debug
-                groupId = 'com.github.anymobi-app-devlopeTeam.network'
+                groupId = 'com.github.anymobi-app-devlopeTeam'
                 artifactId = 'network'
                 version = '0.2.3'
             }
