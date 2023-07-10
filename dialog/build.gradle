@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'maven-publish'
 }
-group='com.github.anymobi-app-devlopeTeam'
+
 afterEvaluate{
     publishing {
         publications{

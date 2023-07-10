@@ -18,6 +18,8 @@ buildscript {
 
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
     }
+
+    group='com.github.anymobi-app-devlopeTeam'
 }
 
 task clean(type: Delete) {
