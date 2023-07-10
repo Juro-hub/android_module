@@ -11,7 +11,14 @@ afterEvaluate{
                 from components.release
                 groupId = 'com.github.anymobi-app-devlopeTeam'
                 artifactId = 'qr'
-                version = '0.2.2'
+                version = '0.2.3'
+            }
+
+            debug(MavenPublication){
+                from components.debug
+                groupId = 'com.github.anymobi-app-devlopeTeam'
+                artifactId = 'qr'
+                version = '0.2.3'
             }
         }
     }
