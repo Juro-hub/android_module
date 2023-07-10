@@ -1,7 +1,21 @@
 plugins {
     id 'com.android.library'
+    id 'maven-publish'
 }
 apply plugin: 'kotlin-android'
+
+afterEvaluate{
+    publishing {
+        publications{
+            release(MavenPublication){
+                from components.release
+                groupId = 'com.github.anymobi-app-devlopeTeam'
+                artifactId = 'network'
+                version = '0.1.7'
+            }
+        }
+    }
+}
 
 android {
     compileSdk 33

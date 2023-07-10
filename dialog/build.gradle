@@ -10,6 +10,8 @@ afterEvaluate{
             release(MavenPublication){
                 from components.release
                 groupId = 'com.github.anymobi-app-devlopeTeam'
+                artifactId = 'dialog'
+                version = '0.1.7'
             }
         }
     }

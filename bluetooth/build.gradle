@@ -1,6 +1,20 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'maven-publish'
+}
+
+afterEvaluate{
+    publishing {
+        publications{
+            release(MavenPublication){
+                from components.release
+                groupId = 'com.github.anymobi-app-devlopeTeam'
+                artifactId = 'bluetooth'
+                version = '0.1.7'
+            }
+        }
+    }
 }
 
 android {
