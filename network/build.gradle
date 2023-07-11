@@ -34,20 +34,20 @@ android {
         targetSdk 33
     }
 
-    def URLType = "network.data.AppURLType"
+    def URLType = "common.modules.network.data.AppURLType"
     buildTypes {
         release {
             minifyEnabled true
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField URLType, "serverType", "network.data.AppURLType.RELEASE"
+            buildConfigField URLType, "serverType", "common.modules.network.data.AppURLType.RELEASE"
         }
 
         debug {
             minifyEnabled false
             debuggable true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField URLType, "serverType", "network.data.AppURLType.DEV"
+            buildConfigField URLType, "serverType", "common.modules.network.data.AppURLType.DEV"
         }
     }
 
