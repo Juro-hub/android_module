@@ -1,1 +1,1 @@
--keep class network.network.** {*;}
+-keep class common.modules.network.** {*;}

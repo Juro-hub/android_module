@@ -5,9 +5,9 @@
 
     <application>
         <activity
-            android:name="qr.ScanQrCodeActivity"
+            android:name="qrmodule.ScanQrCodeActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|smallestScreenSize"
-            android:exported="false"
+            android:exported="true"
             android:resizeableActivity="false"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
