@@ -1,7 +1,7 @@
-package network
+package common.modules.network
 
 import common.modules.network.BuildConfig
-import network.data.AppURLType
+import common.modules.network.data.AppURLType
 
 /** 네트워크 관련 URL 모음 */
 class NetworkURL {

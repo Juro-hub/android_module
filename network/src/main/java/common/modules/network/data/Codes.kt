@@ -1,4 +1,4 @@
-package network.data
+package common.modules.network.data
 
 /** 네트워크 응답 관련 상수 */
 class NetworkResponseConst {

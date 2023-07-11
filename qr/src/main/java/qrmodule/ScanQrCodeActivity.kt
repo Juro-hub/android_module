@@ -2,7 +2,6 @@ package qrmodule
 
 import android.Manifest
 import android.app.Activity
-import android.content.DialogInterface
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
@@ -20,10 +19,10 @@ import common.modules.qr.databinding.ActivityScanQrCodeBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import network.NetworkClient
-import network.NetworkResParser
-import network.NetworkURL.Companion.getSecurityUrl
-import network.NetworkUtil
+import common.modules.network.NetworkClient
+import common.modules.network.NetworkResParser
+import common.modules.network.NetworkURL.Companion.getSecurityUrl
+import common.modules.network.NetworkUtil
 import org.json.JSONObject
 
 /**

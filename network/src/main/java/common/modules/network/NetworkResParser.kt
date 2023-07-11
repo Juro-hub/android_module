@@ -1,16 +1,15 @@
-package network
+package common.modules.network
 
 import android.app.Activity
-import common.modules.network.R
-import network.data.NetworkErrorConst.Companion.NETWORK_ERROR_CUSTOM
-import network.data.NetworkResponseConst.Companion.NETWORK_RESPONSE
-import network.data.NetworkResponseConst.Companion.NETWORK_RESPONSE_ACTION_FAILURE_CODE
-import network.data.NetworkResponseConst.Companion.NETWORK_RESPONSE_ACTION_FAILURE_REASON
-import network.data.NetworkResponseConst.Companion.NETWORK_RESPONSE_ACTION_RESULT
-import network.data.NetworkResponseConst.Companion.NETWORK_RESPONSE_ACTION_SUCCESS_MESSAGE
-import network.data.NetworkResponseConst.Companion.NETWORK_RESPONSE_CONTENT
-import network.data.NetworkResponseConst.Companion.NETWORK_RESPONSE_EMPTY
-import network.data.NetworkResponseConst.Companion.NETWORK_RESPONSE_SUCCESS
+import common.modules.network.data.NetworkErrorConst.Companion.NETWORK_ERROR_CUSTOM
+import common.modules.network.data.NetworkResponseConst.Companion.NETWORK_RESPONSE
+import common.modules.network.data.NetworkResponseConst.Companion.NETWORK_RESPONSE_ACTION_FAILURE_CODE
+import common.modules.network.data.NetworkResponseConst.Companion.NETWORK_RESPONSE_ACTION_FAILURE_REASON
+import common.modules.network.data.NetworkResponseConst.Companion.NETWORK_RESPONSE_ACTION_RESULT
+import common.modules.network.data.NetworkResponseConst.Companion.NETWORK_RESPONSE_ACTION_SUCCESS_MESSAGE
+import common.modules.network.data.NetworkResponseConst.Companion.NETWORK_RESPONSE_CONTENT
+import common.modules.network.data.NetworkResponseConst.Companion.NETWORK_RESPONSE_EMPTY
+import common.modules.network.data.NetworkResponseConst.Companion.NETWORK_RESPONSE_SUCCESS
 import okhttp3.Response
 import org.json.JSONObject
 

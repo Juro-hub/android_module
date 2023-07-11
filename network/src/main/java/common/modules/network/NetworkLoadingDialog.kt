@@ -1,4 +1,4 @@
-package network
+package common.modules.network
 
 import android.app.Activity
 import android.app.Dialog

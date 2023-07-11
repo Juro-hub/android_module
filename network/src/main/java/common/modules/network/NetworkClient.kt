@@ -1,8 +1,7 @@
-package network
+package common.modules.network
 
 import android.annotation.SuppressLint
 import android.net.TrafficStats
-import common.modules.network.BuildConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.MultipartBody
