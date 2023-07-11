@@ -1,6 +1,7 @@
 package common.modules.dialog
 
 import android.app.Activity
+import android.graphics.Color
 
 class DialogFunction {
     companion object {
@@ -67,6 +68,15 @@ class DialogFunction {
 
                     show()
                 }
+            }
+        }
+
+        // Dialog Color Setter 잘못 설정 시 def 로 색상 설정
+        fun String.parseColor(defValue: String): Int {
+            return try {
+                Color.parseColor(this)
+            } catch (e: java.lang.Exception) {
+                Color.parseColor(defValue)
             }
         }
     }

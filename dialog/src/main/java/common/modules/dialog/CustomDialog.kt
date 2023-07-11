@@ -4,20 +4,34 @@ import android.app.Activity
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.GradientDrawable
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.View.VISIBLE
 import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
+import common.modules.dialog.DialogFunction.Companion.parseColor
+import common.modules.dialog.DialogSetter.Companion.NEGATIVE_BTN_BACKGROUND_COLOR
+import common.modules.dialog.DialogSetter.Companion.POSITIVE_BTN_BACKGROUND_COLOR
+import common.modules.dialog.DialogSetter.Companion.POSITIVE_BTN_TEXT_COLOR
 
-class CustomDialog(act: Activity) : Dialog(act) {
-    private var act: Activity
+class CustomDialog(private val act: Activity) : Dialog(act) {
 
     init {
         setContentView(R.layout.custom_dialog)
         setCancelable(false)
-        this.act = act
+
+        // 긍정 버튼/문구 색상 변경
+        (findViewById<AppCompatButton>(R.id.custom_dialog_positive_btn).background as GradientDrawable).setColor(POSITIVE_BTN_BACKGROUND_COLOR.parseColor("#2763ba"))
+        (findViewById<TextView>(R.id.custom_dialog_positive_btn).setTextColor(POSITIVE_BTN_TEXT_COLOR.parseColor("#FFFFFF")))
+
+        // 부정 버튼/문구 색상 변경
+        (findViewById<AppCompatButton>(R.id.custom_dialog_negative_btn).background as GradientDrawable).setColor(NEGATIVE_BTN_BACKGROUND_COLOR.parseColor("#FF0000"))
+        (findViewById<TextView>(R.id.custom_dialog_negative_btn).setTextColor(POSITIVE_BTN_TEXT_COLOR.parseColor("#FFFFFF")))
+
+
     }
 
     fun setTitle(title: String) {
