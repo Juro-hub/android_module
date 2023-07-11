@@ -3,7 +3,7 @@ package common.modules.network
 import common.modules.network.BuildConfig.serverType
 import common.modules.network.data.AppURLType
 
-/** 네트워크 관련 URL 모음 */
+/** 네트워크 관련 URL 모음  */
 class NetworkURL {
     companion object {
         fun getSecurityUrl(): String {
