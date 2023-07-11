@@ -5,7 +5,6 @@ import android.app.Activity
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -19,11 +18,6 @@ import common.modules.qr.databinding.ActivityScanQrCodeBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import common.modules.network.NetworkClient
-import common.modules.network.NetworkResParser
-import common.modules.network.NetworkURL.Companion.getSecurityUrl
-import common.modules.network.NetworkUtil
-import org.json.JSONObject
 
 /**
  * QrCode 스캔
@@ -61,8 +55,6 @@ class ScanQrCodeActivity : AppCompatActivity() {
                                 bind.scanQrCodeZxingScanner.pauseAndWait()
                             }
 
-                            //TODO 이후 처리 (앱별 개별)
-                            networkProcess()
                             return@launch
                         } catch (e: Exception) {
                             //TODO Alert 관련
@@ -70,7 +62,6 @@ class ScanQrCodeActivity : AppCompatActivity() {
                         }
                     }
 
-                    //TODO 실패 처리
                 }
             }
         }
@@ -140,29 +131,5 @@ class ScanQrCodeActivity : AppCompatActivity() {
 
         bind.scanQrCodeZxingScanner.resume()
         bind.scanQrCodeZxingScanner.decodeSingle(barcodeCallback)
-    }
-
-    private fun networkProcess() {
-        CoroutineScope(Dispatchers.IO).launch {
-            NetworkUtil.showLoadingDialog(act = this@ScanQrCodeActivity, isShow = true) // 로딩 시작.
-
-            //TODO
-            val response = NetworkClient(getSecurityUrl() + "채워주세요", JSONObject().apply {}).executeRequest(userAgent = "")
-
-            NetworkUtil.showLoadingDialog(act = this@ScanQrCodeActivity, isShow = false) // 로딩 종료.
-
-            //TODO
-            NetworkResParser.resParser(this@ScanQrCodeActivity, response, onSuccess = { _, _ ->
-                runOnUiThread {
-                    setResult(Activity.RESULT_OK)
-                    Toast.makeText(this@ScanQrCodeActivity, "채워주세요", Toast.LENGTH_SHORT).show()
-                    finish()
-                }
-            }, onFailure = { _, _ ->
-                runOnUiThread {
-                    //TODO Alert 관련
-                }
-            })
-        }
     }
 }

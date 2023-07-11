@@ -11,14 +11,14 @@ afterEvaluate{
                 from components.release
                 groupId = 'com.github.anymobi-app-devlopeTeam'
                 artifactId = 'network'
-                version = '0.2.8'
+                version = '0.2.9'
             }
 
             debug(MavenPublication){
                 from components.debug
                 groupId = 'com.github.anymobi-app-devlopeTeam'
                 artifactId = 'network'
-                version = '0.2.8'
+                version = '0.2.9'
             }
         }
     }
@@ -34,20 +34,17 @@ android {
         targetSdk 33
     }
 
-    def URLType = "common.modules.network.data.AppURLType"
     buildTypes {
         release {
             minifyEnabled true
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField URLType, "serverType", "common.modules.network.data.AppURLType.RELEASE"
         }
 
         debug {
             minifyEnabled false
             debuggable true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField URLType, "serverType", "common.modules.network.data.AppURLType.DEV"
         }
     }
 

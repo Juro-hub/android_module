@@ -21,7 +21,6 @@ import javax.net.ssl.X509TrustManager
  * 공용 NetworkClient
  */
 class NetworkClient(private val networkUrl: String, private val data: Any) {
-
     private val timeOut: Long = 30
     private var request: Request? = null
     private val client: OkHttpClient
