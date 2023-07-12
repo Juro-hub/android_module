@@ -3,6 +3,9 @@ package common.modules.dialog
 import android.app.Activity
 import android.graphics.Color
 
+/**
+ * 단순 Dialog 노출
+ */
 class DialogFunction {
     companion object {
         private var dialog: CustomDialog? = null
