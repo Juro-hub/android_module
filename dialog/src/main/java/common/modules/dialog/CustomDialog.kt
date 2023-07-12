@@ -87,10 +87,6 @@ class CustomDialog(private val act: Activity) : Dialog(act) {
     }
 
     override fun show() {
-        if (findViewById<TextView>(R.id.custom_dialog_title).text.toString().isEmpty()) {
-            findViewById<RelativeLayout>(R.id.custom_dialog_title_layout).visibility = View.GONE
-        }
-
         if (isShowing) return
 
         if (act.isFinishing) return
