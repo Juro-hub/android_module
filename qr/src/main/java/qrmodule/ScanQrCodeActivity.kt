@@ -19,12 +19,12 @@ import common.modules.qr.databinding.ActivityScanQrCodeBinding
  */
 open class ScanQrCodeActivity : AppCompatActivity() {
     open lateinit var bind: ActivityScanQrCodeBinding
-    private val REQUEST_CODE_CAMERA = 5000
+    private val CAMERA_PERMISSION_CODE = 5000
 
     // 카메라 권한 없을 경우 요청 결과 수신 처리
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_CODE_CAMERA) {
+        if (requestCode == CAMERA_PERMISSION_CODE) {
             // 카메라 권한 요청했으나 거부할 경우.
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
                 permissionReject()
@@ -34,10 +34,12 @@ open class ScanQrCodeActivity : AppCompatActivity() {
         }
     }
 
-    // 권한 없을 경우 호출.
+    // 권한 없을 경우 호출되는 function
+    // -> 자식 앱 처리 필요
     open fun permissionReject() {}
 
     // QR 스캔 Callback
+    // -> 자식 앱 처리 필요
     open val barcodeCallback = object : BarcodeCallback {
         // 결과 획득한 경우.
         override fun barcodeResult(result: BarcodeResult?) {
@@ -65,7 +67,7 @@ open class ScanQrCodeActivity : AppCompatActivity() {
         initLayout()
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), REQUEST_CODE_CAMERA)
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), CAMERA_PERMISSION_CODE)
         } else {
             initScanner()
         }
@@ -91,6 +93,7 @@ open class ScanQrCodeActivity : AppCompatActivity() {
         bind.scanQrCodeMessage.text = message
     }
 
+    // Scanner initialize
     private fun initScanner() {
         bind.scanQrCodeZxingScanner.setStatusText("")
         bind.scanQrCodeZxingScanner.viewFinder.visibility = View.GONE
