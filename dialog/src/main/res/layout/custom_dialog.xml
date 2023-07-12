@@ -1,91 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_custom_dialog">
 
+    <!-- 타이틀 영역 -->
     <RelativeLayout
+        android:id="@+id/custom_dialog_title_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent">
+        android:visibility="gone">
 
-        <!-- 타이틀 영역 -->
-        <RelativeLayout
-            android:id="@+id/custom_dialog_title_layout"
+        <!-- 타이틀 내용 -->
+        <TextView
+            android:id="@+id/custom_dialog_title"
+            style="@style/custom_dialog_title_style"
+            android:layout_centerHorizontal="true" />
+
+        <!-- 타이틀/내용 구분 선 -->
+        <View
+            android:id="@+id/custom_dialog_divide"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="1.5dp"
+            android:layout_below="@id/custom_dialog_title"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/divider_line" />
+    </RelativeLayout>
 
-            <!-- 타이틀 내용 -->
-            <TextView
-                android:id="@+id/custom_dialog_title"
-                style="@style/custom_dialog_title_style"
-                android:layout_centerHorizontal="true" />
+    <!-- 메시지 영역 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/custom_dialog_message_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/custom_dialog_title_layout"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp">
 
-            <!-- 타이틀/내용 구분 선 -->
-            <View
-                android:id="@+id/custom_dialog_divide"
-                android:layout_width="match_parent"
-                android:layout_height="1.5dp"
-                android:layout_below="@id/custom_dialog_title"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="5dp"
-                android:background="@drawable/divider_line" />
-        </RelativeLayout>
-
-        <!-- 메시지 영역 -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/custom_dialog_message_layout"
+        <!-- maxHeight 사용 위해 constraint 로 감싸줌 -->
+        <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/custom_dialog_title_layout"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp">
+            android:fillViewport="true"
+            android:scrollbarDefaultDelayBeforeFade="800"
+            app:layout_constraintHeight_max="450dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <!-- maxHeight 사용 위해 constraint 로 감싸줌 -->
-            <ScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fillViewport="true"
-                android:scrollbarDefaultDelayBeforeFade="800"
-                app:layout_constraintHeight_max="450dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/custom_dialog_message"
+                    style="@style/custom_dialog_message_style"
+                    android:gravity="center" />
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <TextView
-                        android:id="@+id/custom_dialog_message"
-                        style="@style/custom_dialog_message_style"
-                        android:gravity="center" />
-                </LinearLayout>
-            </ScrollView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- 버튼 영역 -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/custom_dialog_message_layout"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
 
-        <!-- 버튼 영역 -->
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/custom_dialog_message_layout"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp">
+        <!-- 부정 버튼(왼쪽) -> Default Gone -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/custom_dialog_negative_btn"
+            style="@style/custom_dialog_negative_button_style"
+            android:layout_weight="0.4" />
 
-            <!-- 부정 버튼(왼쪽) -> Default Gone -->
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/custom_dialog_negative_btn"
-                style="@style/custom_dialog_negative_button_style"
-                android:layout_weight="0.4" />
-
-            <!-- 긍정 버튼(오른쪽) -->
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/custom_dialog_positive_btn"
-                style="@style/custom_dialog_positive_button_style"
-                android:layout_weight="0.4" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
-    </RelativeLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- 긍정 버튼(오른쪽) -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/custom_dialog_positive_btn"
+            style="@style/custom_dialog_positive_button_style"
+            android:layout_weight="0.4" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</RelativeLayout>

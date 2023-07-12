@@ -30,17 +30,14 @@ class CustomDialog(private val act: Activity) : Dialog(act) {
         // 부정 버튼/문구 색상 변경
         (findViewById<AppCompatButton>(R.id.custom_dialog_negative_btn).background as GradientDrawable).setColor(NEGATIVE_BTN_BACKGROUND_COLOR.parseColor("#FF0000"))
         (findViewById<TextView>(R.id.custom_dialog_negative_btn).setTextColor(POSITIVE_BTN_TEXT_COLOR.parseColor("#FFFFFF")))
-
-
     }
 
     fun setTitle(title: String) {
         findViewById<TextView>(R.id.custom_dialog_title).apply {
             text = title
-            visibility = VISIBLE
         }
 
-        findViewById<View>(R.id.custom_dialog_divide).visibility = VISIBLE
+        findViewById<View>(R.id.custom_dialog_title_layout).visibility = VISIBLE
     }
 
     // 다이얼로그 메시지 내용 설정
@@ -73,6 +70,7 @@ class CustomDialog(private val act: Activity) : Dialog(act) {
 
     // 다이얼로그 긍정 버튼 설정
     fun setPositiveButton(text: String, listener: OnClickListener) {
+
         findViewById<Button>(R.id.custom_dialog_positive_btn).apply {
             setText(text)
             setOnClickListener(listener)

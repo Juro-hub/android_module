@@ -18,8 +18,8 @@ class DialogFunction {
                 if (it.isShowing) return
             }
 
-            dialog = CustomDialog(act)
             act.runOnUiThread {
+                dialog = CustomDialog(act)
                 dialog?.apply {
                     setMessage(msg)
                     setPositiveButton("확인") {

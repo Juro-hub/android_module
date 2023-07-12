@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="35dp"
         android:gravity="center"
+        android:id="@+id/scan_qr_code_message"
         android:text="QR코드를\n인식해주세요."
         android:textColor="@android:color/white"
         android:textSize="22dp"
