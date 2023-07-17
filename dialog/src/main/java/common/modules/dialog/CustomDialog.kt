@@ -9,8 +9,8 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.view.View.VISIBLE
 import android.widget.Button
-import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import common.modules.dialog.DialogFunction.Companion.parseColor
 import common.modules.dialog.DialogSetter.Companion.NEGATIVE_BTN_BACKGROUND_COLOR
@@ -30,6 +30,12 @@ class CustomDialog(private val act: Activity) : Dialog(act) {
         // 부정 버튼/문구 색상 변경
         (findViewById<AppCompatButton>(R.id.custom_dialog_negative_btn).background as GradientDrawable).setColor(NEGATIVE_BTN_BACKGROUND_COLOR.parseColor("#FF0000"))
         (findViewById<TextView>(R.id.custom_dialog_negative_btn).setTextColor(POSITIVE_BTN_TEXT_COLOR.parseColor("#FFFFFF")))
+
+        if(BuildConfig.DEBUG){
+            Toast.makeText(act,"Debug",Toast.LENGTH_SHORT).show()
+        }else{
+            Toast.makeText(act,"Release",Toast.LENGTH_SHORT).show()
+        }
     }
 
     fun setTitle(title: String) {

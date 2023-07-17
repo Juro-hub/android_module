@@ -10,11 +10,11 @@ class NetworkUtil {
         private var loadingDialog: NetworkLoadingDialog? = null
 
         // 네트워크 로딩 다이얼로그 띄우기.
-        fun showLoadingDialog(act: Activity, isShow: Boolean) {
+        fun showLoadingDialog(act: Activity, dialogId: Int, isShow: Boolean) {
             act.runOnUiThread {
                 try {
                     if (loadingDialog == null) {
-                        loadingDialog = NetworkLoadingDialog(act)
+                        loadingDialog = NetworkLoadingDialog(act, dialogId)
                     }
 
                     loadingDialog?.let {

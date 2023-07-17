@@ -8,15 +8,14 @@ import android.os.Bundle
 import android.view.ContextThemeWrapper
 import android.widget.ImageView
 import com.bumptech.glide.Glide
-import common.modules.network.R
 
 /** 네트워크 수행 시 Dialog 띄어주는 Cls. */
-class NetworkLoadingDialog(ctx: Context) : Dialog(ctx) {
+class NetworkLoadingDialog(ctx: Context,private val dialogId: Int) : Dialog(ctx) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.loading_dialog)
 
-        val dialogImage = findViewById<ImageView>(R.id.network_loading_dialog)
+        val dialogImage = findViewById<ImageView>(dialogId)
 
         window?.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
 
