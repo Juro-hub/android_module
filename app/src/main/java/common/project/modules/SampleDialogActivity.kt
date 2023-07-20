@@ -23,6 +23,7 @@ class SampleDialogActivity : AppCompatActivity() {
             NEGATIVE_BTN_TEXT_COLOR = "#ffffff"
         }
 
+        // Dialog 생성 관련
         val dialog = CustomDialog(this)
         dialog.setMessage("서버에서 필요한 정보를 받아오는데 실패하였습니다.\n잠시 후 다시 시도해주세요.")
         dialog.apply {
