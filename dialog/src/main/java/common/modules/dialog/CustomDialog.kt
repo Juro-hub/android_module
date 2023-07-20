@@ -5,53 +5,52 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.GradientDrawable
-import android.view.View
 import android.view.View.OnClickListener
 import android.view.View.VISIBLE
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.widget.AppCompatButton
 import common.modules.dialog.DialogFunction.Companion.parseColor
 import common.modules.dialog.DialogSetter.Companion.NEGATIVE_BTN_BACKGROUND_COLOR
 import common.modules.dialog.DialogSetter.Companion.POSITIVE_BTN_BACKGROUND_COLOR
 import common.modules.dialog.DialogSetter.Companion.POSITIVE_BTN_TEXT_COLOR
+import common.modules.dialog.databinding.CustomDialogBinding
 
 class CustomDialog(private val act: Activity) : Dialog(act) {
 
+    private var bind: CustomDialogBinding = CustomDialogBinding.inflate(layoutInflater)
+
     init {
-        setContentView(R.layout.custom_dialog)
+        setContentView(bind.root)
         setCancelable(false)
 
         // 긍정 버튼/문구 색상 변경
-        (findViewById<AppCompatButton>(R.id.custom_dialog_positive_btn).background as GradientDrawable).setColor(POSITIVE_BTN_BACKGROUND_COLOR.parseColor("#2763ba"))
-        (findViewById<TextView>(R.id.custom_dialog_positive_btn).setTextColor(POSITIVE_BTN_TEXT_COLOR.parseColor("#FFFFFF")))
+        (bind.customDialogPositiveBtn.background as GradientDrawable).setColor(POSITIVE_BTN_BACKGROUND_COLOR.parseColor("#2763ba"))
+        bind.customDialogPositiveBtn.setTextColor(POSITIVE_BTN_TEXT_COLOR.parseColor("#FFFFFF"))
 
         // 부정 버튼/문구 색상 변경
-        (findViewById<AppCompatButton>(R.id.custom_dialog_negative_btn).background as GradientDrawable).setColor(NEGATIVE_BTN_BACKGROUND_COLOR.parseColor("#FF0000"))
-        (findViewById<TextView>(R.id.custom_dialog_negative_btn).setTextColor(POSITIVE_BTN_TEXT_COLOR.parseColor("#FFFFFF")))
+        (bind.customDialogNegativeBtn.background as GradientDrawable).setColor(NEGATIVE_BTN_BACKGROUND_COLOR.parseColor("#FF0000"))
+        bind.customDialogNegativeBtn.setTextColor(POSITIVE_BTN_TEXT_COLOR.parseColor("#FFFFFF"))
+    }
 
-        if(BuildConfig.DEBUG){
-            Toast.makeText(act,"Debug",Toast.LENGTH_SHORT).show()
-        }else{
-            Toast.makeText(act,"Release",Toast.LENGTH_SHORT).show()
+    override fun show() {
+        if (isShowing) return
+
+        if (act.isFinishing) return
+
+        act.runOnUiThread {
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            super.show()
         }
     }
 
     fun setTitle(title: String) {
-        findViewById<TextView>(R.id.custom_dialog_title).apply {
-            text = title
-        }
-
-        findViewById<View>(R.id.custom_dialog_title_layout).visibility = VISIBLE
+        bind.customDialogTitle.text = title
+        bind.customDialogTitleLayout.visibility = VISIBLE
     }
 
     // 다이얼로그 메시지 내용 설정
     fun setMessage(str: String) {
-        val textView = findViewById<TextView>(R.id.custom_dialog_message)
-        textView.text = str
-        val paint = textView.paint
-        var message = textView.text as String
+        bind.customDialogMessage.text = str
+        val paint = bind.customDialogMessage.paint
+        var message = bind.customDialogMessage.text as String
 
         val frameWidth = paint.measureText(str) // 메시지 영역 Width
 
@@ -71,13 +70,12 @@ class CustomDialog(private val act: Activity) : Dialog(act) {
         }
 
         // TextView 에 최종 결과물 설정.
-        textView.text = result
+        bind.customDialogMessage.text = result
     }
 
     // 다이얼로그 긍정 버튼 설정
     fun setPositiveButton(text: String, listener: OnClickListener) {
-
-        findViewById<Button>(R.id.custom_dialog_positive_btn).apply {
+        bind.customDialogPositiveBtn.apply {
             setText(text)
             setOnClickListener(listener)
         }
@@ -85,21 +83,18 @@ class CustomDialog(private val act: Activity) : Dialog(act) {
 
     // 다이얼로그 부정 버튼 설정
     fun setNegativeButton(text: String, listener: OnClickListener) {
-        findViewById<Button>(R.id.custom_dialog_negative_btn).apply {
+        bind.customDialogNegativeBtn.apply {
             visibility = VISIBLE
             setText(text)
             setOnClickListener(listener)
         }
     }
 
-    override fun show() {
-        if (isShowing) return
+    fun setInput() {
+        bind.customDialogInput.visibility = VISIBLE
+    }
 
-        if (act.isFinishing) return
-
-        act.runOnUiThread {
-            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            super.show()
-        }
+    fun getEditText():String{
+        return bind.customDialogInput.text.toString()
     }
 }

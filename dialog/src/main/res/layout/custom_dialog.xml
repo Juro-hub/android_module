@@ -58,16 +58,25 @@
                 <TextView
                     android:id="@+id/custom_dialog_message"
                     style="@style/custom_dialog_message_style"
+                    android:breakStrategy="high_quality"
                     android:gravity="center" />
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!-- EditText 영역 -->
+    <EditText
+        android:id="@+id/custom_dialog_input"
+        style="@style/custom_dialog_input_style"
+        android:layout_below="@id/custom_dialog_message_layout"
+        android:background="@drawable/bg_border_edit_text"
+        android:visibility="gone" />
+
     <!-- 버튼 영역 -->
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/custom_dialog_message_layout"
+        android:layout_below="@id/custom_dialog_input"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp">
 

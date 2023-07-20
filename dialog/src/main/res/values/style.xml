@@ -52,4 +52,19 @@
         <item name="android:layout_marginBottom">30dp</item>
         <item name="android:layout_marginTop">30dp</item>
     </style>
+
+    <!-- Input 스타일 -->
+    <style name="custom_dialog_input_style" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:hint">여기에 입력해 주세요</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:paddingStart">15dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:background">@drawable/bg_border_edit_text</item>
+    </style>
 </resources>
