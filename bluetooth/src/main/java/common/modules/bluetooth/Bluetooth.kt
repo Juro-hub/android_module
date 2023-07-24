@@ -19,6 +19,7 @@ import common.modules.bluetooth.impl.BluetoothDataCallback
 import common.modules.bluetooth.impl.BluetoothState
 import java.util.*
 
+//TODO
 @SuppressLint("MissingPermission")
 class Bluetooth(private val serviceID: String, private val characteristicCode: String, private val descriptorCode: String, private val dataCallback: BluetoothDataCallback) {
     private var bluetoothGatt: BluetoothGatt? = null       // 블루투스 Gatt
