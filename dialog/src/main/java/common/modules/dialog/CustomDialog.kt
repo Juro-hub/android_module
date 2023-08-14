@@ -12,10 +12,13 @@ import common.modules.dialog.DialogSetter.Companion.NEGATIVE_BTN_BACKGROUND_COLO
 import common.modules.dialog.DialogSetter.Companion.POSITIVE_BTN_BACKGROUND_COLOR
 import common.modules.dialog.DialogSetter.Companion.POSITIVE_BTN_TEXT_COLOR
 import common.modules.dialog.databinding.CustomDialogBinding
+import java.util.regex.Pattern
 
 class CustomDialog(private val act: Activity) : Dialog(act) {
 
-    private var bind: CustomDialogBinding = CustomDialogBinding.inflate(layoutInflater)
+    private val bind: CustomDialogBinding by lazy {
+        CustomDialogBinding.inflate(layoutInflater)
+    }
 
     init {
         setContentView(bind.root)
@@ -90,11 +93,20 @@ class CustomDialog(private val act: Activity) : Dialog(act) {
         }
     }
 
-    fun setInput() {
+    //TODO CheckRegex + showEditText 공용처리..? 고민
+    fun showEditText(regexFilter: DialogRegexFilter) {
         bind.customDialogInput.visibility = VISIBLE
+        if(regexFilter == DialogRegexFilter.DIALOG_REGEX_TYPE_PHONE){
+            bind.customDialogInput.addTextChangedListener(AddHyphenPhoneNumber(bind.customDialogInput))
+        }
     }
 
-    fun getEditText():String{
+    fun checkRegex(regexFilter: DialogRegexFilter): Boolean {
+        val matcher = Pattern.compile(regexFilter.regex).matcher(bind.customDialogInput.text.toString())
+        return matcher.find()
+    }
+
+    fun getEditText(): String {
         return bind.customDialogInput.text.toString()
     }
 }

@@ -7,13 +7,32 @@
     tools:context=".SampleDialogActivity">
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/dialog_show_btn"
+        android:id="@+id/one_btn_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dialog 노출"
+        android:text="One Button Dialog"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/two_btn_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Two Button Dialog"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/one_btn_dialog" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/edit_text_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="edit_text_dialog"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/two_btn_dialog" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

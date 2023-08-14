@@ -106,5 +106,4 @@ open class ScanQrCodeActivity : AppCompatActivity() {
             }
         }
     }
-
 }
