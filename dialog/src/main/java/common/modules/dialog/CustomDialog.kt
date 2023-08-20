@@ -5,16 +5,23 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.GradientDrawable
+import android.text.InputType
 import android.view.View.OnClickListener
 import android.view.View.VISIBLE
-import common.modules.dialog.DialogFunction.Companion.parseColor
-import common.modules.dialog.DialogSetter.Companion.NEGATIVE_BTN_BACKGROUND_COLOR
-import common.modules.dialog.DialogSetter.Companion.POSITIVE_BTN_BACKGROUND_COLOR
-import common.modules.dialog.DialogSetter.Companion.POSITIVE_BTN_TEXT_COLOR
+import android.widget.Toast
+import common.modules.dialog.data.DialogRegexFilter
+import common.modules.dialog.data.DialogSetter.Companion.NEGATIVE_BTN_BACKGROUND_COLOR
+import common.modules.dialog.data.DialogSetter.Companion.POSITIVE_BTN_BACKGROUND_COLOR
+import common.modules.dialog.data.DialogSetter.Companion.POSITIVE_BTN_TEXT_COLOR
 import common.modules.dialog.databinding.CustomDialogBinding
+import common.modules.dialog.util.AddHyphenPhoneNumber
+import common.modules.dialog.util.DialogFunction.Companion.parseColor
+import common.modules.dialog.util.ExtensionOnClickListener
 import java.util.regex.Pattern
 
+//TODO Builder Pattern 고민해보기.
 class CustomDialog(private val act: Activity) : Dialog(act) {
+    private var regexFilter: DialogRegexFilter? = null
 
     private val bind: CustomDialogBinding by lazy {
         CustomDialogBinding.inflate(layoutInflater)
@@ -38,6 +45,7 @@ class CustomDialog(private val act: Activity) : Dialog(act) {
 
         if (act.isFinishing) return
 
+        bind.customDialogInput.setText("")
         act.runOnUiThread {
             window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             super.show()
@@ -78,32 +86,63 @@ class CustomDialog(private val act: Activity) : Dialog(act) {
 
     // 다이얼로그 긍정 버튼 설정
     fun setPositiveButton(text: String, listener: OnClickListener) {
+        val dialogListener = OnClickListener {
+            regexFilter?.let {
+                if (!Pattern.compile(it.filter).matcher(bind.customDialogInput.text.toString()).find()) {
+                    Toast.makeText(act, it.errorMessage, Toast.LENGTH_SHORT).show()
+                    return@OnClickListener
+                }
+            }
+
+            if (isShowing) {
+                dismiss()
+            }
+        }
+
+        val extensionOnClickListener = ExtensionOnClickListener()
+        extensionOnClickListener.add(listener)
+        extensionOnClickListener.add(dialogListener)
         bind.customDialogPositiveBtn.apply {
             setText(text)
-            setOnClickListener(listener)
+            setOnClickListener(extensionOnClickListener)
         }
     }
 
     // 다이얼로그 부정 버튼 설정
     fun setNegativeButton(text: String, listener: OnClickListener) {
+        val dialogListener = OnClickListener {
+            if (isShowing) {
+                dismiss()
+            }
+        }
+
+        val extensionOnClickListener = ExtensionOnClickListener()
+        extensionOnClickListener.add(listener)
+        extensionOnClickListener.add(dialogListener)
         bind.customDialogNegativeBtn.apply {
             visibility = VISIBLE
             setText(text)
-            setOnClickListener(listener)
+            setOnClickListener(dialogListener)
         }
     }
 
-    //TODO CheckRegex + showEditText 공용처리..? 고민
-    fun showEditText(regexFilter: DialogRegexFilter) {
+    fun showEditText(filter: DialogRegexFilter? = null) {
+        regexFilter = filter
         bind.customDialogInput.visibility = VISIBLE
-        if(regexFilter == DialogRegexFilter.DIALOG_REGEX_TYPE_PHONE){
-            bind.customDialogInput.addTextChangedListener(AddHyphenPhoneNumber(bind.customDialogInput))
-        }
-    }
 
-    fun checkRegex(regexFilter: DialogRegexFilter): Boolean {
-        val matcher = Pattern.compile(regexFilter.regex).matcher(bind.customDialogInput.text.toString())
-        return matcher.find()
+        when (filter) {
+            DialogRegexFilter.DIALOG_REGEX_TYPE_PHONE -> {
+                bind.customDialogInput.addTextChangedListener(AddHyphenPhoneNumber(bind.customDialogInput))
+                bind.customDialogInput.inputType = InputType.TYPE_CLASS_PHONE
+            }
+            DialogRegexFilter.DIALOG_REGEX_TYPE_NUMBER, DialogRegexFilter.DIALOG_REGEX_TYPE_POSITIVE_NUMBER -> {
+                bind.customDialogInput.inputType = InputType.TYPE_CLASS_NUMBER
+            }
+            DialogRegexFilter.DIALOG_REGEX_TYPE_PASSWORD -> {
+                bind.customDialogInput.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+            }
+            else -> {}
+        }
     }
 
     fun getEditText(): String {

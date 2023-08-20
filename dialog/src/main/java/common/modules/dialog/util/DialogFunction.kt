@@ -1,7 +1,8 @@
-package common.modules.dialog
+package common.modules.dialog.util
 
 import android.app.Activity
 import android.graphics.Color
+import common.modules.dialog.CustomDialog
 
 /**
  * 단순 Dialog 노출

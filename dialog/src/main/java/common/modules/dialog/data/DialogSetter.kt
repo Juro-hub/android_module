@@ -1,4 +1,4 @@
-package common.modules.dialog
+package common.modules.dialog.data
 
 class DialogSetter {
     companion object {

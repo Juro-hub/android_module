@@ -3,15 +3,14 @@ package common.project.modules
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import common.modules.dialog.CustomDialog
-import common.modules.dialog.DialogRegexFilter
-import common.modules.dialog.DialogSetter
-import common.modules.dialog.DialogSetter.Companion.NEGATIVE_BTN_BACKGROUND_COLOR
-import common.modules.dialog.DialogSetter.Companion.NEGATIVE_BTN_TEXT_COLOR
-import common.modules.dialog.DialogSetter.Companion.POSITIVE_BTN_BACKGROUND_COLOR
-import common.modules.dialog.DialogSetter.Companion.POSITIVE_BTN_TEXT_COLOR
+import common.modules.dialog.data.DialogRegexFilter
+import common.modules.dialog.data.DialogSetter
+import common.modules.dialog.data.DialogSetter.Companion.NEGATIVE_BTN_BACKGROUND_COLOR
+import common.modules.dialog.data.DialogSetter.Companion.NEGATIVE_BTN_TEXT_COLOR
+import common.modules.dialog.data.DialogSetter.Companion.POSITIVE_BTN_BACKGROUND_COLOR
+import common.modules.dialog.data.DialogSetter.Companion.POSITIVE_BTN_TEXT_COLOR
 
 class SampleDialogActivity : AppCompatActivity(), View.OnClickListener {
     private val dialog: CustomDialog by lazy {
@@ -52,14 +51,8 @@ class SampleDialogActivity : AppCompatActivity(), View.OnClickListener {
 
                 R.id.two_btn_dialog -> {
                     dialog.apply {
-                        setPositiveButton("Positive") {
-                            //TODO Positive
-                            dialog.dismiss()
-                        }
-                        setNegativeButton("Negative") {
-                            //TODO Negative
-                            dialog.dismiss()
-                        }
+                        setPositiveButton("Positive") {}
+                        setNegativeButton("Negative") {}
                         show()
                     }
                 }
@@ -67,14 +60,7 @@ class SampleDialogActivity : AppCompatActivity(), View.OnClickListener {
                 R.id.edit_text_dialog -> {
                     dialog.apply {
                         showEditText(DialogRegexFilter.DIALOG_REGEX_TYPE_PHONE)
-                        setPositiveButton("Positive") {
-                            if (checkRegex(DialogRegexFilter.DIALOG_REGEX_TYPE_PHONE)) {
-                                dialog.dismiss()
-                                Toast.makeText(this@SampleDialogActivity, "Your Phone Number :${dialog.getEditText()}", Toast.LENGTH_SHORT).show()
-                            } else {
-                                Toast.makeText(this@SampleDialogActivity, "Please Enter PhoneNumber", Toast.LENGTH_SHORT).show()
-                            }
-                        }
+                        setPositiveButton("Positive") {}
                         show()
                     }
                 }

@@ -4,7 +4,7 @@ import com.google.zxing.ResultPoint
 import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
 import common.modules.dialog.CustomDialog
-import common.modules.dialog.DialogFunction
+import common.modules.dialog.util.DialogFunction
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

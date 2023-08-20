@@ -1,5 +1,6 @@
-package common.modules.dialog
+package common.modules.dialog.util
 
+import android.annotation.SuppressLint
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
@@ -17,6 +18,7 @@ class AddHyphenPhoneNumber(private val view: EditText) : TextWatcher {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onTextChanged(message: CharSequence?, start: Int, before: Int, count: Int) {
         // 입력한 값이 있을경우만 진행.
         if (message != null) {
@@ -27,11 +29,11 @@ class AddHyphenPhoneNumber(private val view: EditText) : TextWatcher {
             val afterLength = message.length
             if (beforeLength < afterLength) {
                 if (afterLength == 4 && !message.toString().contains("-")) {
-                    view.setText(message.toString().subSequence(0, 3).toString() + "-" + message.toString()[3])
+                    view.setText(message.toString().substring(0,3) + "-" +message.toString()[3])
                     view.setSelection(5)
                 } else if (afterLength == 9 && !message.toString().substring(8, 9).contains("-")) {
                     // 9 번째 글자 입력 시, 8번째에 - 이 없을 경우.
-                    view.setText(message.toString().subSequence(0, 8).toString() + "-" + message.toString()[8])
+                    view.setText(message.toString().substring(0, 8) + "-" + message.toString()[8])
                     view.setSelection(10)
                 }
             }
